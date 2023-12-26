@@ -1,30 +1,41 @@
+from math import ceil
+
 print('Witam w narzędziu Malarza!!! Pomogę ci obliczyć ilość potrzebnej farby oraz gruntu :) ')
 
 
 #Pytamy użytkownika o ilość ścian.
 walls_amount = int(input('Ile jest ścian do pomalowania? '))
-repeat_height = input('Jeśli chcesz przyjąć poprzednią wysokość to wciśnij "Enter": ')
+previous_height = 2.5
+total_area = 0
 
-#Pytamy użytkownika o ilość ścian.
-width = int(input('Podaj szerokość ściany w metrach: '))
-height = int(input('Podaj wysokość ściany w metrach: '))
+for counter in range(walls_amount):
+    width = float(input(f'Podaj szerokość ściany nr {counter + 1} w metrach: '))
+    height = input(f'Podaj wysokość ściany nr {counter + 1} w metrach: ')
+
+
+    if height == '':
+        height = previous_height
+    else:
+        height = float(height)
+        previous_height = height
+
 
 # Obliczenie powierzchni do pomalowania
-total_walls = walls_amount * (width*height)
+    total_area += (height * width)
 
-print(f"Powierzchnia do pomalowania wynosi {total_walls}")
+print(f"Powierzchnia do pomalowania wynosi {total_area}")
 
 #pytanie uzytkownika o ilość warstw
 grunt = int(input('Prosze podac ilosc warstw gruntu: '))
 farba = int(input('Prosze podac ilosc warstw farby: '))
 
 
-# obliczenie:  wydajność gruntu 5mkw = 1 litr
-grunt_required = (total_walls/5) * grunt
-farba_required = (total_walls/5) * farba
+# obliczenie:  wydajność gruntu 5mkw = 1 litr/ wydajność farby 13mkw = 1 litr
+grunt_required = ceil(total_area * grunt / 5)
+farba_required = ceil(total_area * farba / 13)
 
-print(f'Potrzebujesz {grunt_required:.2f} litrów gruntu')
-print(f'Potrzebujesz {farba_required:.2f} litrów farby')
+print(f'Potrzebujesz {grunt_required} litrów gruntu')
+print(f'Potrzebujesz {farba_required} litrów farby')
 
-
+#Koniec projektu
 
