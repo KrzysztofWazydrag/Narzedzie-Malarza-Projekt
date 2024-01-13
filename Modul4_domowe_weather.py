@@ -15,7 +15,6 @@ for city, temperature in measurements.items():
     if temperature == max(measurements.values()):
         highest_temperature.append(city)
 
-for city, temperature in measurements.items():
     if temperature == min(measurements.values()):
         lowest_temperature.append(city)
 
