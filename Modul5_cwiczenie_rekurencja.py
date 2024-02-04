@@ -3,8 +3,8 @@
 def count_to(start=1, limit=10):
     print(start)
     if start == limit:
-        return
+        return limit
 
     return count_to(start + 1, limit)
 
-print(count_to(1,10))
+count_to(1,10)
