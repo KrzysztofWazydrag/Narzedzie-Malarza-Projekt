@@ -258,3 +258,5 @@ print('---'*10)
 print(team1_name, 'SUMMARY: ', team1_points,'=', team1_calculated_points)
 print(team2_name, 'SUMMARY: ', team2_points,'=', team2_calculated_points)
 
+# Program was made on 03/02/2024 by Krzysztof Wazydrag
+
