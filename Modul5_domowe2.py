@@ -26,4 +26,21 @@ print(check_words_length(['cat', 'lama','tiger','elephant','giraffe']))
 # Nawiasy mogą występować w tekście wielokrotnie, nigdy nie będą się w sobie zawierać.
 
 def count_char_between(text, char_start:str='(', char_end:str=')'):
-    pass
+    should_i_count_char = False
+    counter = 0
+
+    for char in text:
+        if char == char_end:
+            should_i_count_char = False
+
+        if should_i_count_char:
+            counter += 1
+
+        if char == char_start:
+            should_i_count_char = True
+
+    return counter
+
+
+print(count_char_between('Ala ma (kota)'))
+print(count_char_between('(Ala) ma (kota)'))
