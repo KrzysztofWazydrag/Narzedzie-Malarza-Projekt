@@ -1,3 +1,6 @@
+# Przygotuj funkcję która zwróci największy wspólny dzielnik dwóch liczb,
+# jeśli takiego nie ma funkcja powinna zwrócić None
+
 from math import ceil
 
 
