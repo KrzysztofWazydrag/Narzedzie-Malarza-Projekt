@@ -15,3 +15,5 @@ def test_filter_words():
     assert filter_words('Ala MA KOTA') == {'MA', 'KOTA'}
     assert filter_words('Ala Ma kotA') == {'Ma', 'kotA'}
     assert filter_words('tygrys') == set()
+
+#finishedgit
