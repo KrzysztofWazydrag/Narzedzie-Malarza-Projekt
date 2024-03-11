@@ -20,3 +20,7 @@ def test_group_them():
 if __name__ == '__main__':
     print(group_them(wall="red", tomato="red", light="yellow", lemon="yellow", grass="green"))
     print(group_them(banana="yellow", python="gites", java="nice", lemon="yellow", grass="green"))
+
+
+
+    ok ok ok
