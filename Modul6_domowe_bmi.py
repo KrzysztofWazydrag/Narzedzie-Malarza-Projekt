@@ -11,7 +11,6 @@
 # 35 - 39,99 - otyłość II stopnia
 # powyżej 40 - skrajna otyłość
 
-
 def calculate_bmi(weight:float, height: float):
     return weight / height ** 2
 
@@ -51,7 +50,6 @@ def __name__ = '__main__':
     bmi = calculate_bmi(weight,height)
     bmi_text = bmi_to_text(bmi)
 
-    print(bmi)
-    print(bmi_text)
+
 
 
