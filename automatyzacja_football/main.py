@@ -21,3 +21,13 @@ modal = WebDriverWait(driver,50).until(
 
 button_element = driver.find_element(By.XPATH, "//div[contains(@class, 'qc-cmp2-footer')]//button[(@mode='primary']")
 button_element.click()
+
+
+select_element = WebDriverWait(driver, 50).until(
+    EC.presence_of_element_located((By.CSS_SELECTOR, '.matchesWeekSelector select. selOptions'))
+)
+
+select = Select(select_element)
+
+for options in select.options:
+    print(option.get_attribute('value'))
