@@ -1,9 +1,19 @@
 import tkinter as tk
+from random import randint
+from tkinter import messagebox
 
 def on_submit():
-    value = field.get()
-    print(value)
+    value = int(field.get())
+    abs(target - value)
+    if previous_difference is None or difference < previous_difference:
+        messagebox.showinfo(('Stan','Robi się cieplej'))
+    else:
+        messagebox.showinfo(('Stan','Robi się zimniej'))
 
+    previous_difference = difference
+
+previous_difference = None
+target = randint(1, 100)
 #tworzenie okienka
 window = tk.Tk()
 window.title('Zgadnij liczbę')
