@@ -3,15 +3,21 @@ from random import randint
 from tkinter import messagebox
 
 def on_submit():
+    global previous_difference, steps
+
     value = int(field.get())
-    abs(target - value)
-    if previous_difference is None or difference < previous_difference:
+    difference = abs(target - value)
+
+    if difference == 0:
+        messagebox.showinfo(('Stan', f"Gratulacje! Chodziło o tę liczbę!" "Zgadłeś w krokach: {steps}"))
+    elif previous_difference is None or difference < previous_difference:
         messagebox.showinfo(('Stan','Robi się cieplej'))
     else:
         messagebox.showinfo(('Stan','Robi się zimniej'))
 
     previous_difference = difference
 
+steps = 0
 previous_difference = None
 target = randint(1, 100)
 #tworzenie okienka
