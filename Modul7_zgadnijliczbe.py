@@ -1,3 +1,5 @@
+#Guess the number
+
 import tkinter as tk
 from random import randint
 from tkinter import messagebox
@@ -36,3 +38,4 @@ button = tk.Button(text='Zgaduje!', command=on_submit)
 button.pack()
 
 window.mainloop()
+
