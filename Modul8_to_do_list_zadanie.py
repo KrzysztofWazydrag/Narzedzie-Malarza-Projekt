@@ -34,7 +34,11 @@ with sqlite3.connect('todo.db') as connection:
         connection.commit()
     elif value == '1':
         todo_id = input('Podaj ID zadania, które zrobiłeś: ')
-        cursor.execute(('UPDATE todos SET is_done=1WHERE todo_id=?)), (todo_id)
+        cursor.execute(('UPDATE todos SET is_done=1 WHERE todo_id=?)), (todo_id)
                         connection commit(_)
     else:
         print('Dokonałeś nieprawidłowego wyboru')
+
+
+print('---' * 10)
+
