@@ -9,14 +9,43 @@
 #
 #Jezeli dla danego dnia byl juz zarejestrowany pomiar
 #to nie powinien byc on dodawany do bazy danych drugi raz.
-
+import sqlite3
+from sys import argv
 from requests import get
 from datetime import date
 
 def get_weather_for_location(location):
    response = get('https://danepubliczne.imgw.pl/api/data/synop')
    for row in response.json():
-       if row['stacja'] == 'Gdańsk' or row['stacja'] == 'Kasprowy Wierch':
-           return {'cisnienie':row['cisnienie'], 'temperatura': row['temperatura'] }
+       if row['stacja'] == location:
+           return {'pressure':row['cisnienie'], 'temperature': row['temperatura'] }
 
+
+#tworzymy tabelę żeby zapisać dane w konkretnym miejscu, connection - polaczenie z bazą danych,
 def add_weather(connection, location, weather):
+    today = date.today()
+    today.strftime('%Y-%m-%d')
+    cursor = connection.cursor()
+    cursor.execute('INSERT INTO weather(created_at, station, temperature, pressure) VALUES(?, ?, ?, ?)', (
+        created_at,
+        location,
+        weather['pressure'],
+        weather['temperature']
+    ))
+    connection.commit()
+
+#cos co tworzy tabelę
+def initialize(connection):
+    cursor = connection.cursor()
+    cursor.execute('''CREATE TABLE weather(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    created_at TMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    station TEXT,
+    temperature REAL,
+    pressure REAL
+    )''')
+    connection.commit()
+
+if len(argv) == 2 and argv[1] == 'setup':
+    with sqlite3.connect('weather.db') as connection:
+        initialize(connection)
