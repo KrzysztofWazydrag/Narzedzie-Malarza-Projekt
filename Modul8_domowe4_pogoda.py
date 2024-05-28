@@ -22,30 +22,44 @@ def get_weather_for_location(location):
 
 
 #tworzymy tabelę żeby zapisać dane w konkretnym miejscu, connection - polaczenie z bazą danych,
-def add_weather(connection, location, weather):
-    today = date.today()
-    today.strftime('%Y-%m-%d')
+def add_weather(connection, created_at: date, location:str, weather):
+    created_at = created_at.strftime('%Y-%m-%d')
     cursor = connection.cursor()
     cursor.execute('INSERT INTO weather(created_at, station, temperature, pressure) VALUES(?, ?, ?, ?)', (
         created_at,
         location,
-        weather['pressure'],
-        weather['temperature']
+        weather['temperature'],
+        weather['pressure']
     ))
+
     connection.commit()
+
+def get_weather_for_date_and_location(connection, created_at:date, location:str) -> dict:
+    cursor = connection.cursor()
+    result = cursor.execute(
+        'SELECT * FROM weather WHERE station =? AND created_at=?', (location, created_at.strftime('%Y-%m-%d'))
+    )
+
+    return result.fetchone()
 
 #cos co tworzy tabelę
 def initialize(connection):
     cursor = connection.cursor()
     cursor.execute('''CREATE TABLE weather(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    created_at TMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     station TEXT,
     temperature REAL,
     pressure REAL
     )''')
     connection.commit()
 
-if len(argv) == 2 and argv[1] == 'setup':
-    with sqlite3.connect('weather.db') as connection:
+with sqlite3.connect('weather.db') as connection:
+    if len(argv) == 2 and argv[1] == 'setup':
         initialize(connection)
+
+    station = 'Kraków'
+    today = date.today()
+    row = get_weather_for_date_and_location(connection, today, station)
+    if row is None:
+        add_weather(connection, today, station, get_weather_for_location(station))
