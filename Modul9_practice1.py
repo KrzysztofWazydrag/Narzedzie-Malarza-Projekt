@@ -17,15 +17,19 @@ class Circle:
         self.radius ** 2 * pi
 
 
-def test circle_calculations():
+def test_circle_calculations():
     circle = Circle(5)
     field = circle.get_field()
     circumference = circle.get_circumference()
 
-    assert 78.5 < field < 78.6
-    assert 31.4 < circumference < 31.5
+    assert 78.5 < (field) < 78.6
+    assert 31.4 < (circumference) < 31.5
 
 
 
-if __name__ == '__main__'
+if __name__ == '__main__':
+    radius = int(input('Podaj promień: '))
+    circle = Circle(radius)
+    print('Pole koła wynosi', circle.get_field())
+    print('Obwód koła wynosi', circle.get_circumference())
 
