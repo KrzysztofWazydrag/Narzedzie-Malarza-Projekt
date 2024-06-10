@@ -33,3 +33,9 @@ if __name__ == '__main__':
     print('Pole koła wynosi', circle.get_field())
     print('Obwód koła wynosi', circle.get_circumference())
 
+
+# Przygotuj klasę Car, która powinna przechowywać nazwę samochodu oraz jego cenę i maksymalną prędkość.
+# Zapytaj użytkownika o 5 samochodów, a następnie wyświetl je na ekranie.
+
+
+
