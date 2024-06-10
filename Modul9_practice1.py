@@ -37,5 +37,12 @@ if __name__ == '__main__':
 # Przygotuj klasę Car, która powinna przechowywać nazwę samochodu oraz jego cenę i maksymalną prędkość.
 # Zapytaj użytkownika o 5 samochodów, a następnie wyświetl je na ekranie.
 
+class Car:
+    def __init__(self, brand, cost, max_speed):
+        self.brand = brand
+        self.cost = cost
+        self.max_speed = max_speed
 
+    def get_five_cars(self):
+        input('Please give me ')
 
