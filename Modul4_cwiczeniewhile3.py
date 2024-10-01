@@ -2,7 +2,6 @@ import random
 
 number = random.randint(1,100)
 
-
 counter = 0
 while True:
     user_guess = int(input('Guess number: '))
